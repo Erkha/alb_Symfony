@@ -1,0 +1,17 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+fos_ck_editor:
+    input_sync: true
+    default_config: base_config
+    configs:
+        base_config:
+            toolbar: "my_toolbar_1"
+    toolbars:
+        configs:
+            my_toolbar_1: [ "@document" , "-", "@link", "-", "@tool", "/","@justif","-","@pagin" ]
+        items:
+            document: [ "Source" ]
+            link:     [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]
+            tool:     [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ]
+            justif:   [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock','Link', 'Unlink']
+            pagin:    ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar','TextColor', 'BGColor']

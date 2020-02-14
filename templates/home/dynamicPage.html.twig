@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{page.title}}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            {% for content in page.contents %}
+            <div>{{content.content|raw}} </div>
+            {% endfor %}
+        </div>
+        <div class="col-6">
+            {% for image in page.images %}
+            <div>{{content.content|raw}} </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

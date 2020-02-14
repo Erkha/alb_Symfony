@@ -1,0 +1,49 @@
+easy_admin:
+    user:
+        name_property_path: username
+    design:
+        form_theme: # Both themes are for ckeditor integration
+            - "@EasyAdmin/form/bootstrap_4.html.twig"
+            - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
+    entities:
+        Page:
+            class: App\Entity\Page
+            form:
+                fields:
+                    - { property: 'title'}
+                    - { property: 'parent'}
+                    - { property: 'images'}
+                    - { property: 'contents'}
+        Image:
+            class: App\Entity\Image
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.page_images%' }
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.page_images%' }
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
+        Content:
+            class: App\Entity\Content
+            form:
+                fields:
+                    - { property: 'title'}
+                    - { property: 'content', type: 'fos_ckeditor' }
+                    - { property: 'page'}
+        User:
+            class: App\Entity\User
+            controller: App\Controller\AdminController
+            form:
+                fields:
+                    - { property: 'username'}
+                    - { property: 'plainPassword', type: 'password', type_options: { required: false }}
+                    -   property: 'roles'
+                        type: 'choice'
+                        type_options:
+                            mapped: true
+                            expanded: true
+                            multiple: true
+                            choices: { 'Conseiller': 'ROLE_USER', 'Administrateur': 'ROLE_ADMIN' }
+
