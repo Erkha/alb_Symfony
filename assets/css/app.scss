@@ -23,3 +23,9 @@
 @import "layout/portfolio.scss";
 @import "layout/contact.scss";
 @import "layout/footer.scss";
+
+body{
+    background-image: url("../img/geobg.svg");
+    background-size: cover;
+    background-attachment: fixed;
+}
