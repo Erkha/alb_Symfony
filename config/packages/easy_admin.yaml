@@ -10,6 +10,8 @@ easy_admin:
             class: App\Entity\UploadFile
             form:
                 fields:
+                - { property: 'title'}
+                - { property: 'page'}
                 - { property: 'uploadedFile', type: 'vich_file' }
         Page:
             class: App\Entity\Page

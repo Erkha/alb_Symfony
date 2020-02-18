@@ -54,10 +54,9 @@ class UploadFile
     private $uploadedFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="attachments")
      *
-     * @var Page
+     * @var Page|null
      */
     private $page;
 
