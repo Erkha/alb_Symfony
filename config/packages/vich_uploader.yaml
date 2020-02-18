@@ -5,3 +5,6 @@ vich_uploader:
         page_images:
             uri_prefix:         '%app.path.page_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.page_images%'
+        upload_files:
+            uri_prefix:         '%app.path.upload_files%'
+            upload_destination: '%kernel.project_dir%/public%app.path.upload_files%'    

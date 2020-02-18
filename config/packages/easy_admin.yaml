@@ -6,6 +6,11 @@ easy_admin:
             - "@EasyAdmin/form/bootstrap_4.html.twig"
             - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
     entities:
+        UploadFile:
+            class: App\Entity\UploadFile
+            form:
+                fields:
+                - { property: 'uploadedFile', type: 'vich_file' }
         Page:
             class: App\Entity\Page
             form:
