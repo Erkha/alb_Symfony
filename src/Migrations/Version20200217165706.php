@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200203085201 extends AbstractMigration
+final class Version20200217165706 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20200203085201 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE content (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, content LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE page ADD top_image_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB6209C90EF21 FOREIGN KEY (top_image_id) REFERENCES image (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_140AB6209C90EF21 ON page (top_image_id)');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20200203085201 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE content');
+        $this->addSql('ALTER TABLE page DROP FOREIGN KEY FK_140AB6209C90EF21');
+        $this->addSql('DROP INDEX UNIQ_140AB6209C90EF21 ON page');
+        $this->addSql('ALTER TABLE page DROP top_image_id');
     }
 }

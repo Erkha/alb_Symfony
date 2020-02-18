@@ -31,11 +31,39 @@ class Page
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
+     *
+     * @var bool
+     */
+    private $topPage;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
      *
      * @var string
      */
-    private $slug;
+    private $resume;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     *
+     * @var bool
+     */
+    private $published;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="page")
+     *
+     * @var Collection|Image[]
+     */
+    private $images;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="childs")
@@ -45,36 +73,35 @@ class Page
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="parent", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="parent")
      *
      * @var Collection|Page[]
      */
     private $childs;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Content", mappedBy="page")
+     * @ORM\Column(type="string", length=255)
      *
-     * @var Collection|Content[]
+     * @var string
      */
-    private $contents;
+    private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="page")
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", inversedBy="topPage", cascade={"persist", "remove"})
      *
-     * @var Collection|Image[]
+     * @var Image|null
      */
-    private $images;
+    private $topImage;
 
     public function __construct()
     {
-        $this->childs = new ArrayCollection();
-        $this->contents = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->childs = new ArrayCollection();
     }
 
     public function __toString(): string
     {
-        return $this->getTitle();
+        return $this->title;
     }
 
     public function getId(): ?int
@@ -99,6 +126,85 @@ class Page
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function getTopPage(): ?bool
+    {
+        return $this->topPage;
+    }
+
+    public function setTopPage(bool $topPage): self
+    {
+        $this->topPage = $topPage;
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?string $resume): self
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (! $this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getPage() === $this) {
+                $image->setPage(null);
+            }
+        }
+
+        return $this;
     }
 
     public function getParent(): ?self
@@ -144,64 +250,14 @@ class Page
         return $this;
     }
 
-    /**
-     * @return Collection|Content[]
-     */
-    public function getContents(): Collection
+    public function getTopImage(): ?Image
     {
-        return $this->contents;
+        return $this->topImage;
     }
 
-    public function addContent(Content $content): self
+    public function setTopImage(?Image $topImage): self
     {
-        if (! $this->contents->contains($content)) {
-            $this->contents[] = $content;
-            $content->setPage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContent(Content $content): self
-    {
-        if ($this->contents->contains($content)) {
-            $this->contents->removeElement($content);
-            // set the owning side to null (unless already changed)
-            if ($content->getPage() === $this) {
-                $content->setPage(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (! $this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setPage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getPage() === $this) {
-                $image->setPage(null);
-            }
-        }
+        $this->topImage = $topImage;
 
         return $this;
     }

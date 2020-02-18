@@ -17,9 +17,13 @@ class HomeController extends AbstractController
      */
     public function displayLandingPage(PageRepository $pageRepo): Response
     {
-        $mainPages=$pageRepo->findBy(['parent' => null]);
+        $mainPages = $pageRepo->findBy(['parent' => null]);
+        $topPages = $pageRepo->findBy(['topPage' => true]);
 
-        return $this->render('home/landing.html.twig', ['mainPages' => $mainPages]);
+        return $this->render('home/landing.html.twig', [
+            'mainPages' => $mainPages,
+            'topPages'  => $topPages,
+        ]);
     }
 
     /**

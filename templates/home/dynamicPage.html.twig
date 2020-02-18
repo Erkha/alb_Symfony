@@ -3,19 +3,34 @@
 {% block title %}{{page.title}}{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            {% for content in page.contents %}
-            <div>{{content.content|raw}} </div>
-            {% endfor %}
-        </div>
-        <div class="col-6">
-            {% for image in page.images %}
-            <div>{{content.content|raw}} </div>
-            {% endfor %}
-        </div>
-    </div>
 
-</div>
+<section class="page-section masthead">
+	<div class="container">
+
+		<!-- Contact Section Heading -->
+		<h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">{{page.title}}</h2>
+
+		<!-- Icon Divider -->
+		<div class="divider-custom">
+			<div class="divider-custom-line"></div>
+			<div class="divider-custom-icon">
+				<i class="fas fa-star"></i>
+			</div>
+			<div class="divider-custom-line"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 p-0">
+            {% for image in page.images %}
+				<img src="{{asset('/img/pages/' ~ image.image)}}" alt="" class="img-fluid">
+            {% endfor %}
+			</div>
+			<div class="col-6 bg-primary p-3">
+                <div>{{page.content|raw}}</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
 {% endblock %}

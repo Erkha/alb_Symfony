@@ -11,9 +11,13 @@ easy_admin:
             form:
                 fields:
                     - { property: 'title'}
+                    - { property: 'resume'}
                     - { property: 'parent'}
+                    - {property: 'childs'}
                     - { property: 'images'}
-                    - { property: 'contents'}
+                    - { property: 'topPage'}
+                    - {property: 'published'}
+                    - { property: 'content',type: 'fos_ckeditor' }
         Image:
             class: App\Entity\Image
             list:
@@ -25,12 +29,6 @@ easy_admin:
             form:
                 fields:
                     - { property: 'imageFile', type: 'vich_image' }
-        Content:
-            class: App\Entity\Content
-            form:
-                fields:
-                    - { property: 'title'}
-                    - { property: 'content', type: 'fos_ckeditor' }
                     - { property: 'page'}
         User:
             class: App\Entity\User

@@ -52,6 +52,13 @@ class Image
      */
     private $page;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="topImage", cascade={"persist", "remove"})
+     *
+     * @var Page
+     */
+    private $topPage;
+
     public function __toString(): string
     {
         return $this->image;
@@ -102,6 +109,24 @@ class Image
     public function setPage(?Page $page): self
     {
         $this->page = $page;
+
+        return $this;
+    }
+
+    public function getTopPage(): ?Page
+    {
+        return $this->topPage;
+    }
+
+    public function setTopPage(?Page $topPage): self
+    {
+        $this->topPage = $topPage;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newTopImage = $topPage === null ? null : $this;
+        if ($topPage->getTopImage() !== $newTopImage) {
+            $topPage->setTopImage($newTopImage);
+        }
 
         return $this;
     }
