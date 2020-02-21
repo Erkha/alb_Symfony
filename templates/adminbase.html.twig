@@ -10,17 +10,17 @@
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_link_tags('adminapp') }}
 		{% endblock %}
 
 	</head>
-	<body>
-		{{include('header.html.twig')}}
-		{% block body %}{% endblock %}
+	<body id='admin-body'>
+			<div class="container">
+				{% block body %}{% endblock %}
+			</div>
+			
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('adminapp') }}
 		{% endblock %}
-		{{include('footer.html.twig')}}
-	</body>
 
 </html>

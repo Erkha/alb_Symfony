@@ -101,6 +101,13 @@ class Image
         return $this->updatedAt;
     }
 
+    public function setUpdatedAt(): ?self
+    {
+        $this->updatedAt = new SafeDateTime('now');
+
+        return $this;
+    }
+
     public function getPage(): ?Page
     {
         return $this->page;

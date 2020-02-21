@@ -82,7 +82,7 @@ class Page
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @var string
+     * @var string|null
      */
     private $slug;
 
@@ -131,7 +131,7 @@ class Page
         return $this;
     }
 
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }

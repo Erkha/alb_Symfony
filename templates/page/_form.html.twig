@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+<div class="form-check form-check-inline">
+    {{ form_row(form.published, {label_attr: {class: 'checkbox-custom'} }) }}
+</div>
+<div class="form-check form-check-inline">
+    {{ form_row(form.topPage, {label_attr: {class: 'checkbox-custom'} }) }}
+</div>
+{# {{form_widget(form.topImage)}} #}
+<h2>Ajouter des images</h2>
+	    {{ include('page/_uploadImage.html.twig', {'files': page.images, 'pageId': page.id}) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
