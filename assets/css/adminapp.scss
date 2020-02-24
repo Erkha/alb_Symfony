@@ -7,3 +7,22 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
+
+body{
+    background: $info;
+}
+
+fieldset{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background: lighten($info,10%);
+}
+
+legend{
+    background:lighten($info,10%);
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    display: inline;
+}

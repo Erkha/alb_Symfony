@@ -22,6 +22,7 @@ easy_admin:
                     - { property: 'parent'}
                     - {property: 'childs'}
                     - { property: 'images'}
+                    - { property: 'attachments'}
                     - { property: 'topPage'}
                     - {property: 'published'}
                     - { property: 'content',type: 'fos_ckeditor' }

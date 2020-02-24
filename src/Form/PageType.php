@@ -31,9 +31,11 @@ class PageType extends AbstractType
                 'choice_label' => 'title',
                 'multiple' => false,
                 'expanded'=> false,
+            ])
+            ->add('topImage', IntegratedImageType::class, [
+                'label'=>'image mise en avant',
+                'required'=> false,
             ]);
-            // ->add('topImage',IntegratedImageType::class, [
-            //     'label'=>'image mise en avant'])
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -20,13 +20,21 @@
 		</div>
 
 		<div class="row">
-			<div class="col-6 p-0">
+		{%if page.images is not empty%}
+			<div class="col-5 p-0">
             {% for image in page.images %}
+			<div class = "p-2">
 				<img src="{{asset('/img/pages/' ~ image.image)}}" alt="" class="img-fluid">
+			</div>
             {% endfor %}
 			</div>
-			<div class="col-6 bg-primary p-3">
-                <div>{{page.content|raw}}</div>
+		{% endif %}
+			<div class='p-2 
+				{% if page.images is empty%} col-12 {% else %} col-7 {% endif %} 
+			d-flex align-content-stretch '>
+				<div class=" bg-primary p-3  w-100">
+					<div>{{page.content|raw}}</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,45 +1,48 @@
 {% extends 'adminbase.html.twig' %}
 
-{% block title %}Page index{% endblock %}
+{% block title %}index des pages{% endblock %}
 
 {% block body %}
-    <h1>Page index</h1>
+    <h1>liste des pages éditables</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>TopPage</th>
-                <th>Resume</th>
-                <th>Content</th>
-                <th>Published</th>
-                <th>Slug</th>
+                <th>nom de la page</th>
+                <th>page parente</th>
+                <th>Mise en avant</th>
+                <th>Publié</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for page in pages %}
             <tr>
-                <td>{{ page.id }}</td>
                 <td>{{ page.title }}</td>
-                <td>{{ page.topPage ? 'Yes' : 'No' }}</td>
-                <td>{{ page.resume }}</td>
-                <td>{{ page.content }}</td>
-                <td>{{ page.published ? 'Yes' : 'No' }}</td>
-                <td>{{ page.slug }}</td>
-                <td>
-                    <a href="{{ path('page_show', {'id': page.id}) }}">show</a>
-                    <a href="{{ path('page_edit', {'id': page.id}) }}">edit</a>
+                <td>{{ page.parent }}</td>
+                <td>{{ page.topPage ? '<i style = "color: green" class="far fa-check-circle"></i>' 
+                    : '<i style = "color: red" class="far fa-circle"></i>' }}</td>
+                <td>{{ page.published ? '<i style = "color: green" class="far fa-check-circle"></i>' 
+                    : '<i style = "color: red" class="far fa-circle"></i>' }}</td>
+                <td class="d-block">
+                    <form method="post" action="{{ path('page_delete', {'id': page.id}) }}" 
+                        onsubmit="return confirm('etes vous surs de vouloir supprimer cette page?');"
+                        class = "d-inline" 
+                    >
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ page.id) }}">
+                        <button class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                        <a class="btn btn-primary" href="{{ path('page_edit', {'id': page.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">pas de page existante</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('page_new') }}">Create new</a>
+    <a href="{{ path('page_new') }}">Créer nouvelle page</a>
 {% endblock %}

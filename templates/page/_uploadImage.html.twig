@@ -12,16 +12,18 @@
 <div class="container mt-4 mb-4">
     <div id="files" class="row">
     {% for file in files %}
-        <div id="file-{{ file.id }}" class="col-md-3 text-center">
-            <img class="uploaded-img" src="/img/pages/{{ file.image }}" />
-            <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ pageId }})"/>
+        <div id="file-{{ file.id }}" class="col-md-3 text-center  d-flex flex-column justify-content-end">
+            <img class="img-fluid" src="/img/pages/{{ file.image }}" />
+            <div>
+                <input type="button" class="btn btn-sm btn-danger mt-1 " value="Supprimer" onclick="deletePicture(this, {{ pageId }})"/>
+            </div>
         </div>
     {% endfor %}
     </div>
 </div>
 
 <div id="file-template" style="display: none" class="col-md-3 text-center">
-    <img class="uploaded-img" />
+    <img class="img-fluid" />
     <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ pageId }})"/>
 </div>
 
