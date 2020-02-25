@@ -10,6 +10,7 @@
             <tr>
                 <th>nom de la page</th>
                 <th>page parente</th>
+                <th> ordre </th>
                 <th>Mise en avant</th>
                 <th>Publié</th>
                 <th>actions</th>
@@ -20,6 +21,7 @@
             <tr>
                 <td>{{ page.title }}</td>
                 <td>{{ page.parent }}</td>
+                <td>{{ page.pageOrder }}</td>
                 <td>{{ page.topPage ? '<i style = "color: green" class="far fa-check-circle"></i>' 
                     : '<i style = "color: red" class="far fa-circle"></i>' }}</td>
                 <td>{{ page.published ? '<i style = "color: green" class="far fa-check-circle"></i>' 

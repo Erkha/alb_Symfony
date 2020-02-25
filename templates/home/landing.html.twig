@@ -9,11 +9,12 @@
 	<div id="carouselExampleFade" class=" carousel slide carousel-fade" data-ride="carousel">
 		<div class="carousel-inner">
 			{% for page in topPages %}
+			<a href="{{path('pages',{'slug':page.slug})}}">
 			<div class="carousel-item {% if loop.first %} active {% endif %}">
 				{% if page.topImage is not empty %}
 					<img src="{{asset('/build/img/' ~  page.topImage.image)}}" class=" w-100 " alt="{{page.title}}">
 				{% else %}
-					<img src="{{asset('/build/img/toparticleBg.svg')}}" class=" w-100 " alt="{{page.title}}">
+					<img src="{{asset('/build/img/newprog.JPG')}}" class=" w-100 " alt="{{page.title}}">
 				{% endif %}
 				<div class="carousel-caption ">
 					<h5>{{page.title}}</h5>
@@ -84,70 +85,67 @@
 
 		<!-- Détail des activités-->
 		<div class="row">
-			<div class="col-6 p-0">
-				<img src="build/img/enfance.jpg" alt="" class=img-fluid>
+			<div class="col-12 col-lg-6 p-0">
+				<img src="build/img/enfance.jpg" alt="" class="w-100">
 			</div>
-			<div class="col-6 bg-primary">
+			<div class="col-12 col-lg-6  bg-primary p-2">
 				<h3 class="text-center py-2">Enfance</h3>
-				<ul class="lead">
-					<li>
-						Centre de loisirs de 3 à 11 ans durant les vacances scolaires et mercredis
-					</li>
-					<li>
-						Accueil périscolaire de 6 à 17 ans
-					</li>
-					<li>
-						Accompagnement à la scolarité de 6 à 17 ans.
-					</li>
+				<div class="d-flex align-items-stretch">
+				<ul class="lead d-flex flex-column justify-content-center">
+					<p>
+						<i class="fas fa-angle-double-right"></i> <a href="{{path('pages',{'slug':'centre-de-loisirs'})}}">
+						Centre de loisirs</a> de 3 à 11 ans durant les vacances scolaires et mercredis
+					</p>
+					<p>
+						<i class="fas fa-angle-double-right"></i> <a href="{{path('pages',{'slug':'periscolaire'})}}">
+						Accueil périscolaire</a> de 6 à 17 ans
+					</p>
+					<p>
+						<i class="fas fa-angle-double-right"></i> <a href="{{path('pages',{'slug':'accompagnement-scolarite'})}}"> 
+						Accompagnement à la scolarité </a> de 6 à 17 ans.
+					</p>
 				</ul>
-				<div class="text-center mt-2">
-					<a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
-						les activités Enfant
-					</a>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6 bg-primary">
+			<div class=" col-order-last col-order-lg-first col-12 col-lg-6 bg-primary p-2">
 				<h3 class="text-center py-2">La ruche</h3>
-				<p>
-
-				</p>
-
-				<div class="text-center mt-2">
-					<a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
-						les activités Enfant
-					</a>
-				</div>
+				<ul class ="lead">
+					<p> <i class="fas fa-angle-double-right"></i>	Les parents se retrouvent accompagnés de leurs enfants de 0 à 4 ans </p>
+					<p class= "text-center"><a href="{{path('pages',{'slug':'la-ruche'})}}"> 
+						Gratuit et anonyme</a></p>
+				</ul>
 			</div>
-			<div class="col-6 p-0">
+			<div class="col-order-first col-order-lg-last col-12 col-lg-6  p-0">
 				<img src="build/img/la ruche.jpg" alt="" class=w-100>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-6 p-0">
-				<img src="build/img/enfance.jpg" alt="" class=img-fluid>
+			<div class="col-12 col-lg-6  p-0">
+				<img src="build/img/alphab.jpg" alt="" class="w-100">
 			</div>
-			<div class="col-6 bg-primary">
+			<div class="col-12 col-lg-6  bg-primary p-2">
 				<h3 class="text-center py-2">Adultes</h3>
 				<ul class="lead">
-					<li>
-						Centre de loisirs de 3 à 11 ans durant les vacances scolaires et mercredis
-					</li>
-					<li>
-						Accueil périscolaire de 6 à 17 ans
-					</li>
-					<li>
-						Accompagnement à la scolarité de 6 à 17 ans.
-					</li>
+					<p>
+						<i class="fas fa-angle-double-right"></i> 
+						Ateliers d'alphabétisation
+					</p>
+					<p>
+						<i class="fas fa-angle-double-right"></i> 
+						Cours de code de la route
+					</p>
+					<p>
+						<i class="fas fa-angle-double-right"></i> 
+						Acces aux droits et à la santé 
+					</p>
+					<p>
+						<i class="fas fa-angle-double-right"></i> 
+						Actvités sportives, ateliers Bien-Être,...
+					</p>
+					<p class= "text-center">Consultez notre offre complète dans la section Adulte</p>
 				</ul>
-
-
-				<div class="text-center mt-2">
-					<a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
-						les activités Enfant
-					</a>
-				</div>
 			</div>
 		</div>
 	</div>

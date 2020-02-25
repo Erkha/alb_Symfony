@@ -55,7 +55,7 @@
             });
     }
     function deletePicture(elt, contentId) {
-        let fileId = elt.parentElement.id.split('-')[1];
+        let fileId = elt.parentElement.parentElement.id.split('-')[1];
         fetch('/adminpage/' + contentId + '/picture/' + fileId)
           .then(response => {
             let eltToDelete = document.getElementById('file-' + fileId) ;

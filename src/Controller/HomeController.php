@@ -17,7 +17,7 @@ class HomeController extends AbstractController
      */
     public function displayLandingPage(PageRepository $pageRepo): Response
     {
-        $mainPages = $pageRepo->findBy(['parent' => null]);
+        $mainPages = $pageRepo->findBy(['parent' => null], ['pageOrder' => 'ASC']);
         $topPages = $pageRepo->findBy(['topPage' => true]);
 
         return $this->render('home/landing.html.twig', [
@@ -31,7 +31,7 @@ class HomeController extends AbstractController
      */
     public function displayPage(PageRepository $pageRepo, Page $page): Response
     {
-        $mainPages=$pageRepo->findBy(['parent' => null]);
+        $mainPages=$pageRepo->findBy(['parent' => null], ['pageOrder' => 'ASC']);
 
         return $this->render('home/dynamicPage.html.twig', [
             'mainPages' => $mainPages,

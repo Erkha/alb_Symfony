@@ -5,27 +5,19 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Page;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PageType extends AbstractType
+class NewPageType extends AbstractType
 {
    /** @param array|mixed[] $options  */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', null, ['label' => 'titre de la page'])
-            ->add('pageOrder')
-            ->add('topPage', null, ['label' => 'page mise en avant'])
-            ->add('published', null, ['label' => 'publié'])
-            ->add('resume', null, ['label' => 'texte mis en avant'])
-            ->add('content', CKEditorType::class, [
-                'config' => ['uiColor' => '#ffffff'],
-                'label'=>'contenu de l\'article',
-            ])
+
             ->add('parent', EntityType::class, [
                 'label' => 'page parent',
                 'class' => Page::class,
@@ -35,10 +27,7 @@ class PageType extends AbstractType
                 'placeholder' => 'Choose an option',
                 'required' => false,
             ])
-            ->add('topImage', IntegratedImageType::class, [
-                'label'=>'image mise en avant',
-                'required'=> false,
-            ]);
+            ->add('topPage', null, ['label' => 'page mise en avant']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

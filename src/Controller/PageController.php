@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Page;
 use App\Exceptions\ImageLoaderException;
+use App\Form\NewPageType;
 use App\Form\PageType;
 use App\Repository\PageRepository;
 use App\Service\ImageLoaderService;
@@ -37,7 +38,7 @@ class PageController extends AbstractController
     public function new(Request $request): Response
     {
         $page = new Page();
-        $form = $this->createForm(PageType::class, $page);
+        $form = $this->createForm(NewPageType::class, $page);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

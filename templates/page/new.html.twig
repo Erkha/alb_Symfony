@@ -3,9 +3,20 @@
 {% block title %}Nouvelle page{% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class = "col-8">
     <h1>Créer une nouvelle page</h1>
 
-    {{ include('page/_form.html.twig') }}
-
-    <a href="{{ path('page_index') }}">retour à la liste des pages</a>
+    <div>
+                <a href="{{ path('page_index') }}">retour à la liste des pages</a>
+                {{ form_start(form) }}
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+            </div>
+        </div>
+    </div>
+{{ form_row(form.title)}}
+{{ form_row(form.parent)}}
+{{ form_end(form) }}
+</div>
+</div>
 {% endblock %}

@@ -13,7 +13,7 @@
       a.nav-link {
         color: $white;
         &:hover {
-          color: $primary;
+          color: $white;
         }
         &:active,
         &:focus {
@@ -31,7 +31,7 @@
         color: $white;
         font-weight: 700;
         &:hover {
-          color: $primary;
+          color: $white;
           background-color: $dark-blue;
         }
         &:active,

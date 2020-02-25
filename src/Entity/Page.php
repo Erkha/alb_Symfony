@@ -100,6 +100,13 @@ class Page
      */
     private $attachments;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @var int|null
+     */
+    private $pageOrder;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -297,6 +304,18 @@ class Page
                 $attachment->setPage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPageOrder(): ?int
+    {
+        return $this->pageOrder;
+    }
+
+    public function setPageOrder(?int $pageOrder): self
+    {
+        $this->pageOrder = $pageOrder;
 
         return $this;
     }

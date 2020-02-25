@@ -2,7 +2,10 @@
 {% if mainPages is defined %}
 
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-	<div class="container">
+	<div class="container d-flex align-items-end">
+		<div class='mb-2'>
+			<img src="/build/img/allogo2.svg" class="" alt="" id="logo">
+		</div>
 		<a class="navbar-brand js-scroll-trigger" href="{{path('main' )}}">Amicale Laique Beaubrun</a>
 		<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 			Menu
@@ -24,7 +27,9 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="{{page.title}}">
 								{% for child in page.childs %}
+									{# {% if child.published == true %} #}
 									<a class="dropdown-item" href="{{ path('pages', {slug: child.slug}) }}">{{child.title}}</a>
+									{# {% endif %} #}
 								{% endfor %}
 							</div>
 						</li>
